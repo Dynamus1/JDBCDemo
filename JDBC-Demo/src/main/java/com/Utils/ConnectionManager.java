@@ -1,6 +1,5 @@
-//import com.sun.jdi.connect.spi.Connection;
+package com.Utils;//import com.sun.jdi.connect.spi.Connection;
 import java.sql.Connection;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.DriverManager;
@@ -10,13 +9,13 @@ import java.util.Properties;
 public class ConnectionManager {
 
     //this is a singleton - meaning when we call this instance we are always referring to the same instance of
-    //this ConnectionManager class
+    //this com.Utils.ConnectionManager class
     public static ConnectionManager connectionManager;
 
     //this is our Connection instance
     public static Connection connection;
 
-    //private constructor for ConnectionManager class so another instance can be created
+    //private constructor for com.Utils.ConnectionManager class so another instance can be created
     private ConnectionManager (){}
 
     //private get method to initialize the connectionManager instance from line 10
@@ -35,7 +34,7 @@ public class ConnectionManager {
         return connection;
     }
 
-    public static Connection connect(){
+    private static Connection connect(){
         try {
             //this creates a new properties list with no values
             Properties props = new Properties();
@@ -67,8 +66,8 @@ public class ConnectionManager {
             String user = String.valueOf(props.get("user"));
             String password = String.valueOf(props.get("password"));
             connection = DriverManager.getConnection(connectionURL,user,password);
-            System.out.println(connectionURL.toString());
-            System.out.println(connection.toString());
+            //System.out.println(connectionURL.toString());
+            //System.out.println(connection.toString());
 
 
         } catch (IOException | SQLException e){
@@ -77,5 +76,4 @@ public class ConnectionManager {
 
         return connection;
     }
-
 }
